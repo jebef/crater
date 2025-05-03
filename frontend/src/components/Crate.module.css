@@ -1,0 +1,68 @@
+
+.container {
+    position: relative;
+}
+
+.scroll-tool {
+    overflow-y: scroll;
+    position: absolute;
+    top: 0;
+    left:0;
+}
+
+.scroll-tool::-webkit-scrollbar {
+    display: none;
+}
+
+.img-a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.img-a-static {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    transition: opacity 1.0s ease, height 1.0s ease;
+}
+
+
+.img-b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.img-b-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: opacity 1.0s ease, height 1.0s ease;
+}
+
+.img-container-a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+}
+
+.img-container-b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.img-container-b-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: opacity 1.0s ease, height 1.0s ease;
+}
