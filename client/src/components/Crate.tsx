@@ -2,29 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./Crate.module.css";
 import { SimpleSavedAlbum } from '../../../server/src/utils/soptifyTypes';
 
-let albums: SimpleSavedAlbum[] = [];
-
-const getSavedAlbums = async () => {
-    try {
-        const res = await fetch('http://127.0.0.1:3001/api/spotify/albums', {
-            method: 'GET',
-            credentials: 'include', // SENDS COOKIES!
-        });
-
-        albums = await res.json();
-
-    } catch (err: any) {
-        console.error(err);
-    }
-}
-
-
-export default function Crate() {
-    // get data from back end 
-    useEffect(() => {
-        getSavedAlbums();
-    },[]);
-
+export default function Crate({ albums }: { albums: SimpleSavedAlbum[] }) {    
+    // component states 
     const [index, setIndex] = useState(0);
     const [trans, setTrans] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +12,7 @@ export default function Crate() {
     const scrollerRef = useRef<HTMLDivElement>(null);
     const [isScrolling, setIsScrolling] = useState(false);
     const [timeoutID, setTimeoutID] = useState<number | null>(null);
-
+    
     // album info 
     const cover_art_width: number = albums[0].image.width;
     const num_albums: number = albums.length;
@@ -60,7 +39,7 @@ export default function Crate() {
             const newTimeoutID = setTimeout(() => {
                 setIsScrolling(false);
                 // console.log("not scrolling!");
-            }, 100);
+            }, 150);
             setTimeoutID(newTimeoutID);
             // update other state var
             const target = event.target as HTMLDivElement; // this is kinda wack 

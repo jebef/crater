@@ -81,8 +81,8 @@ export const spotifyCallback = async (req: Request, res: Response): Promise<any>
         });
 
         // set front end success flag 
-        res.redirect('https://localhost:5173?isLoggedIn=true');
-        res.json({ isLoggedIn: true });
+        res.redirect('http://127.0.0.1:5173/?isLoggedIn=true');
+        //res.json({ isLoggedIn: true });
         // TODO: fix routing back to front end 
 
     } catch (err: any) {
@@ -137,7 +137,6 @@ export const spotifyGetSavedAlbums = async (req: Request, res: Response): Promis
             result.push(album);
         }
         // send album data as json 
-        console.log(result);
         res.json(result);
 
     } catch (err: any) {

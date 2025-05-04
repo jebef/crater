@@ -13,9 +13,11 @@ const app = express();
 const PORT = process.env.SERVER_PORT;
 
 // middleware 
-app.use(cors( {
+// security settings for communication between servers 
+app.use(cors({
+    origin: 'http://127.0.0.1:5173',
     credentials: true
-})); // communicate between servers on different ports
+})); 
 app.use(express.json()); // parse JSON bodies 
 app.use(cookieParser()); // cookies!
 
