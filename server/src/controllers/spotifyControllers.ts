@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { Request, response, Response } from 'express';
 import axios from 'axios';
 import { generateCodeVerifier, sha256, base64encode } from '../utils/pkce';
-import { SimpleSavedAlbum, Image, SimpleArtist } from '../utils/soptifyTypes';
+import { SimpleSavedAlbum, Image, SimpleArtist, SavedAlbum } from '../utils/soptifyTypes';
 
 export const spotifyLogin = async (req: Request, res: Response) => {
     // generate code verifier and challenge 
@@ -101,7 +101,7 @@ export const spotifyGetSavedAlbums = async (req: Request, res: Response): Promis
     }
 
     try {
-        const response = await axios.get('https://api.spotify.com/v1/me/albums', {
+        const response = await axios.get('https://api.spotify.com/v1/me/albums?limit=50', {
             headers: {
                 Authorization: `Bearer ${access_token}`
             }
@@ -144,6 +144,44 @@ export const spotifyGetSavedAlbums = async (req: Request, res: Response): Promis
         return res.status(500).json({ error: 'Failed to fetch saved albums' });
     }
 };
+
+// // send get requests to Spotify's api 
+// const savedAlbumsRequest = async (access_token: string, limit: number, offset: number): Promise<SimpleSavedAlbum[]> => {
+    
+//     // helper function to send get requests
+//     const sendRequest = async (limit: number, offset: number): Promise<any> => {
+//         try {
+//             const response = await axios.get(`https://api.spotify.com/v1/me/albums?limit=${limit}&offset=${offset}`, {
+//                 headers: {
+//                     Authorization: `Bearer ${access_token}`
+//                 }
+//             });
+//             return response;
+//         } catch (err: any) {
+//             console.error('Failed to fetch saved albums:', err.response?.data || err.message);
+//             return null;
+//         }
+
+//     }
+
+//     let raw_data = 
+
+
+
+
+
+//     try {
+//         const response = await axios.get(`https://api.spotify.com/v1/me/albums?limit=${limit}&offset=${offset}`, {
+//             headers: {
+//                 Authorization: `Bearer ${access_token}`
+//             }
+//         });
+//         return response.data.items;
+//     } catch (err: any) {
+//         console.error('Failed to fetch saved albums:', err.response?.data || err.message);
+//         return null;
+//     }
+// }
 
 
 
